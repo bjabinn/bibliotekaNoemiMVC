@@ -19,7 +19,7 @@ namespace bibliotecaASP_MVC
             this.TTitulo = new HashSet<TTitulo>();
         }
     
-        public long SagaID { get; set; }
+        public long ID { get; set; }
         public string Saga { get; set; }
     
         public virtual ICollection<TTitulo> TTitulo { get; set; }

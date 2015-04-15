@@ -19,7 +19,7 @@ namespace bibliotecaASP_MVC
             this.TObjecto_Imagen = new HashSet<TObjecto_Imagen>();
         }
     
-        public long ImagenID { get; set; }
+        public long ID { get; set; }
         public byte[] Imagen { get; set; }
     
         public virtual ICollection<TObjecto_Imagen> TObjecto_Imagen { get; set; }

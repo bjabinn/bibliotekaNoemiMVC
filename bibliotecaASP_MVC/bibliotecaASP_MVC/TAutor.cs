@@ -19,7 +19,7 @@ namespace bibliotecaASP_MVC
             this.TAutor_Titulo = new HashSet<TAutor_Titulo>();
         }
     
-        public long AutorID { get; set; }
+        public long ID { get; set; }
         public string Nombre { get; set; }
     
         public virtual ICollection<TAutor_Titulo> TAutor_Titulo { get; set; }

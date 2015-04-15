@@ -19,7 +19,7 @@ namespace bibliotecaASP_MVC
             this.TTitulo = new HashSet<TTitulo>();
         }
     
-        public long UbicacionID { get; set; }
+        public long ID { get; set; }
         public string Ubicacion { get; set; }
     
         public virtual ICollection<TTitulo> TTitulo { get; set; }

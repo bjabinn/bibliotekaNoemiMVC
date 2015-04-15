@@ -13,10 +13,10 @@ namespace bibliotecaASP_MVC
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class bibliotekaNoemiEntities : DbContext
+    public partial class bibliotekaNoemiConnection : DbContext
     {
-        public bibliotekaNoemiEntities()
-            : base("name=bibliotekaNoemiEntities")
+        public bibliotekaNoemiConnection()
+            : base("name=bibliotekaNoemiConnection")
         {
         }
     

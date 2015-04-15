@@ -29,5 +29,7 @@ namespace bibliotecaASP_MVC.Models
         {
             return new ApplicationDbContext();
         }
+
+        public System.Data.Entity.DbSet<bibliotecaASP_MVC.TIdioma> TIdiomas { get; set; }
     }
 }

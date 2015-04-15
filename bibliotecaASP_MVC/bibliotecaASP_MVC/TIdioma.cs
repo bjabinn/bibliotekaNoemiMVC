@@ -11,6 +11,7 @@ namespace bibliotecaASP_MVC
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
     
     public partial class TIdioma
     {
@@ -19,7 +20,8 @@ namespace bibliotecaASP_MVC
             this.TTitulo = new HashSet<TTitulo>();
         }
     
-        public long IdiomaID { get; set; }
+        [Key]
+        public long ID { get; set; }
         public string Idioma { get; set; }
     
         public virtual ICollection<TTitulo> TTitulo { get; set; }

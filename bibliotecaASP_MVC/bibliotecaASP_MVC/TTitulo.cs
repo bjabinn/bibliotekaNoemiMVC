@@ -20,7 +20,7 @@ namespace bibliotecaASP_MVC
             this.TPersonaje_Titulo = new HashSet<TPersonaje_Titulo>();
         }
     
-        public long TituloID { get; set; }
+        public long ID { get; set; }
         public string Titulo { get; set; }
         public long AutorID { get; set; }
         public Nullable<int> Volumen { get; set; }

@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="bibliotekaNoemiModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="bibliotekaNoemiModelNamespace.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="sysdiagrams">
           <Key>
             <PropertyRef Name="diagram_id" />
@@ -17,9 +17,9 @@
         </EntityType>
         <EntityType Name="TAutor">
           <Key>
-            <PropertyRef Name="AutorID" />
+            <PropertyRef Name="ID" />
           </Key>
-          <Property Name="AutorID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Nombre" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="TAutor_Titulo">
@@ -32,23 +32,23 @@
         </EntityType>
         <EntityType Name="TFormato">
           <Key>
-            <PropertyRef Name="FormatoID" />
+            <PropertyRef Name="ID" />
           </Key>
-          <Property Name="FormatoID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Formato" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="TIdioma">
           <Key>
-            <PropertyRef Name="IdiomaID" />
+            <PropertyRef Name="ID" />
           </Key>
-          <Property Name="IdiomaID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Idioma" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="TImagen">
           <Key>
-            <PropertyRef Name="ImagenID" />
+            <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ImagenID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Imagen" Type="image" Nullable="false" />
         </EntityType>
         <EntityType Name="TObjecto_Imagen">
@@ -63,9 +63,9 @@
         </EntityType>
         <EntityType Name="TPersonaje">
           <Key>
-            <PropertyRef Name="PersonajeID" />
+            <PropertyRef Name="ID" />
           </Key>
-          <Property Name="PersonajeID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Nombre" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="TPersonaje_Titulo">
@@ -78,23 +78,23 @@
         </EntityType>
         <EntityType Name="TSaga">
           <Key>
-            <PropertyRef Name="SagaID" />
+            <PropertyRef Name="ID" />
           </Key>
-          <Property Name="SagaID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Saga" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="TTipoObjeto">
           <Key>
-            <PropertyRef Name="TipoObjetoID" />
+            <PropertyRef Name="ID" />
           </Key>
-          <Property Name="TipoObjetoID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Descripcion" Type="nvarchar" MaxLength="25" Nullable="false" />
         </EntityType>
         <EntityType Name="TTitulo">
           <Key>
-            <PropertyRef Name="TituloID" />
+            <PropertyRef Name="ID" />
           </Key>
-          <Property Name="TituloID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Titulo" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="AutorID" Type="bigint" Nullable="false" />
           <Property Name="Volumen" Type="int" />
@@ -109,9 +109,9 @@
         </EntityType>
         <EntityType Name="TUbicacion">
           <Key>
-            <PropertyRef Name="UbicacionID" />
+            <PropertyRef Name="ID" />
           </Key>
-          <Property Name="UbicacionID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Ubicacion" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <Association Name="FK_Autor_Titulo_Autor">
@@ -119,7 +119,7 @@
           <End Role="TAutor_Titulo" Type="Self.TAutor_Titulo" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TAutor">
-              <PropertyRef Name="AutorID" />
+              <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="TAutor_Titulo">
               <PropertyRef Name="AutorID" />
@@ -131,7 +131,7 @@
           <End Role="TAutor_Titulo" Type="Self.TAutor_Titulo" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TTitulo">
-              <PropertyRef Name="TituloID" />
+              <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="TAutor_Titulo">
               <PropertyRef Name="TituloID" />
@@ -143,7 +143,7 @@
           <End Role="TObjecto_Imagen" Type="Self.TObjecto_Imagen" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TImagen">
-              <PropertyRef Name="ImagenID" />
+              <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="TObjecto_Imagen">
               <PropertyRef Name="ImagenID" />
@@ -155,7 +155,7 @@
           <End Role="TObjecto_Imagen" Type="Self.TObjecto_Imagen" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TTipoObjeto">
-              <PropertyRef Name="TipoObjetoID" />
+              <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="TObjecto_Imagen">
               <PropertyRef Name="TipoObjetoID" />
@@ -167,7 +167,7 @@
           <End Role="TPersonaje_Titulo" Type="Self.TPersonaje_Titulo" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TPersonaje">
-              <PropertyRef Name="PersonajeID" />
+              <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="TPersonaje_Titulo">
               <PropertyRef Name="PersonajeID" />
@@ -179,7 +179,7 @@
           <End Role="TPersonaje_Titulo" Type="Self.TPersonaje_Titulo" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TTitulo">
-              <PropertyRef Name="TituloID" />
+              <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="TPersonaje_Titulo">
               <PropertyRef Name="TituloID" />
@@ -191,7 +191,7 @@
           <End Role="TTitulo" Type="Self.TTitulo" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TFormato">
-              <PropertyRef Name="FormatoID" />
+              <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="TTitulo">
               <PropertyRef Name="FormatoID" />
@@ -203,7 +203,7 @@
           <End Role="TTitulo" Type="Self.TTitulo" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TIdioma">
-              <PropertyRef Name="IdiomaID" />
+              <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="TTitulo">
               <PropertyRef Name="IdiomaID" />
@@ -215,7 +215,7 @@
           <End Role="TTitulo" Type="Self.TTitulo" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TSaga">
-              <PropertyRef Name="SagaID" />
+              <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="TTitulo">
               <PropertyRef Name="SagaID" />
@@ -227,14 +227,14 @@
           <End Role="TTitulo" Type="Self.TTitulo" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TUbicacion">
-              <PropertyRef Name="UbicacionID" />
+              <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="TTitulo">
               <PropertyRef Name="UbicacionID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="bibliotekaNoemiModelStoreContainer">
+        <EntityContainer Name="bibliotekaNoemiModelNamespaceStoreContainer">
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TAutor" EntityType="Self.TAutor" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TAutor_Titulo" EntityType="Self.TAutor_Titulo" Schema="dbo" store:Type="Tables" />
@@ -293,7 +293,7 @@
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="bibliotekaNoemiModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="bibliotekaNoemiModelNamespace" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="sysdiagrams">
           <Key>
             <PropertyRef Name="diagram_id" />
@@ -306,9 +306,9 @@
         </EntityType>
         <EntityType Name="TAutor">
           <Key>
-            <PropertyRef Name="AutorID" />
+            <PropertyRef Name="ID" />
           </Key>
-          <Property Name="AutorID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="TAutor_Titulo" Relationship="Self.FK_Autor_Titulo_Autor" FromRole="TAutor" ToRole="TAutor_Titulo" />
         </EntityType>
@@ -324,25 +324,25 @@
         </EntityType>
         <EntityType Name="TFormato">
           <Key>
-            <PropertyRef Name="FormatoID" />
+            <PropertyRef Name="ID" />
           </Key>
-          <Property Name="FormatoID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Formato" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="TTitulo" Relationship="Self.FK_Titulo_Formato" FromRole="TFormato" ToRole="TTitulo" />
         </EntityType>
         <EntityType Name="TIdioma">
           <Key>
-            <PropertyRef Name="IdiomaID" />
+            <PropertyRef Name="ID" />
           </Key>
-          <Property Name="IdiomaID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Idioma" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="TTitulo" Relationship="Self.FK_Titulo_Idioma" FromRole="TIdioma" ToRole="TTitulo" />
         </EntityType>
         <EntityType Name="TImagen">
           <Key>
-            <PropertyRef Name="ImagenID" />
+            <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ImagenID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Imagen" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
           <NavigationProperty Name="TObjecto_Imagen" Relationship="Self.FK_Objecto_Imagen_Imagen" FromRole="TImagen" ToRole="TObjecto_Imagen" />
         </EntityType>
@@ -360,9 +360,9 @@
         </EntityType>
         <EntityType Name="TPersonaje">
           <Key>
-            <PropertyRef Name="PersonajeID" />
+            <PropertyRef Name="ID" />
           </Key>
-          <Property Name="PersonajeID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="TPersonaje_Titulo" Relationship="Self.FK_Personaje_Titulo_Personaje" FromRole="TPersonaje" ToRole="TPersonaje_Titulo" />
         </EntityType>
@@ -378,25 +378,25 @@
         </EntityType>
         <EntityType Name="TSaga">
           <Key>
-            <PropertyRef Name="SagaID" />
+            <PropertyRef Name="ID" />
           </Key>
-          <Property Name="SagaID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Saga" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="TTitulo" Relationship="Self.FK_Titulo_Saga" FromRole="TSaga" ToRole="TTitulo" />
         </EntityType>
         <EntityType Name="TTipoObjeto">
           <Key>
-            <PropertyRef Name="TipoObjetoID" />
+            <PropertyRef Name="ID" />
           </Key>
-          <Property Name="TipoObjetoID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Descripcion" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="TObjecto_Imagen" Relationship="Self.FK_Objecto_Imagen_TipoObjeto" FromRole="TTipoObjeto" ToRole="TObjecto_Imagen" />
         </EntityType>
         <EntityType Name="TTitulo">
           <Key>
-            <PropertyRef Name="TituloID" />
+            <PropertyRef Name="ID" />
           </Key>
-          <Property Name="TituloID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Titulo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="AutorID" Type="Int64" Nullable="false" />
           <Property Name="Volumen" Type="Int32" />
@@ -417,9 +417,9 @@
         </EntityType>
         <EntityType Name="TUbicacion">
           <Key>
-            <PropertyRef Name="UbicacionID" />
+            <PropertyRef Name="ID" />
           </Key>
-          <Property Name="UbicacionID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Ubicacion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="TTitulo" Relationship="Self.FK_Titulo_Ubicacion" FromRole="TUbicacion" ToRole="TTitulo" />
         </EntityType>
@@ -428,7 +428,7 @@
           <End Role="TAutor_Titulo" Type="Self.TAutor_Titulo" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TAutor">
-              <PropertyRef Name="AutorID" />
+              <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="TAutor_Titulo">
               <PropertyRef Name="AutorID" />
@@ -440,7 +440,7 @@
           <End Role="TAutor_Titulo" Type="Self.TAutor_Titulo" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TTitulo">
-              <PropertyRef Name="TituloID" />
+              <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="TAutor_Titulo">
               <PropertyRef Name="TituloID" />
@@ -452,7 +452,7 @@
           <End Role="TTitulo" Type="Self.TTitulo" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TFormato">
-              <PropertyRef Name="FormatoID" />
+              <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="TTitulo">
               <PropertyRef Name="FormatoID" />
@@ -464,7 +464,7 @@
           <End Role="TTitulo" Type="Self.TTitulo" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TIdioma">
-              <PropertyRef Name="IdiomaID" />
+              <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="TTitulo">
               <PropertyRef Name="IdiomaID" />
@@ -476,7 +476,7 @@
           <End Role="TObjecto_Imagen" Type="Self.TObjecto_Imagen" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TImagen">
-              <PropertyRef Name="ImagenID" />
+              <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="TObjecto_Imagen">
               <PropertyRef Name="ImagenID" />
@@ -488,7 +488,7 @@
           <End Role="TObjecto_Imagen" Type="Self.TObjecto_Imagen" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TTipoObjeto">
-              <PropertyRef Name="TipoObjetoID" />
+              <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="TObjecto_Imagen">
               <PropertyRef Name="TipoObjetoID" />
@@ -500,7 +500,7 @@
           <End Role="TPersonaje_Titulo" Type="Self.TPersonaje_Titulo" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TPersonaje">
-              <PropertyRef Name="PersonajeID" />
+              <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="TPersonaje_Titulo">
               <PropertyRef Name="PersonajeID" />
@@ -512,7 +512,7 @@
           <End Role="TPersonaje_Titulo" Type="Self.TPersonaje_Titulo" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TTitulo">
-              <PropertyRef Name="TituloID" />
+              <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="TPersonaje_Titulo">
               <PropertyRef Name="TituloID" />
@@ -524,7 +524,7 @@
           <End Role="TTitulo" Type="Self.TTitulo" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TSaga">
-              <PropertyRef Name="SagaID" />
+              <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="TTitulo">
               <PropertyRef Name="SagaID" />
@@ -536,14 +536,14 @@
           <End Role="TTitulo" Type="Self.TTitulo" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TUbicacion">
-              <PropertyRef Name="UbicacionID" />
+              <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="TTitulo">
               <PropertyRef Name="UbicacionID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="bibliotekaNoemiEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="bibliotekaNoemiConnection" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
           <EntitySet Name="TAutor" EntityType="Self.TAutor" />
           <EntitySet Name="TAutor_Titulo" EntityType="Self.TAutor_Titulo" />
@@ -603,9 +603,9 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="bibliotekaNoemiModelStoreContainer" CdmEntityContainer="bibliotekaNoemiEntities">
+        <EntityContainerMapping StorageEntityContainer="bibliotekaNoemiModelNamespaceStoreContainer" CdmEntityContainer="bibliotekaNoemiConnection">
           <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="bibliotekaNoemiModel.sysdiagrams">
+            <EntityTypeMapping TypeName="bibliotekaNoemiModelNamespace.sysdiagrams">
               <MappingFragment StoreEntitySet="sysdiagrams">
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="principal_id" ColumnName="principal_id" />
@@ -616,15 +616,15 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TAutor">
-            <EntityTypeMapping TypeName="bibliotekaNoemiModel.TAutor">
+            <EntityTypeMapping TypeName="bibliotekaNoemiModelNamespace.TAutor">
               <MappingFragment StoreEntitySet="TAutor">
-                <ScalarProperty Name="AutorID" ColumnName="AutorID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TAutor_Titulo">
-            <EntityTypeMapping TypeName="bibliotekaNoemiModel.TAutor_Titulo">
+            <EntityTypeMapping TypeName="bibliotekaNoemiModelNamespace.TAutor_Titulo">
               <MappingFragment StoreEntitySet="TAutor_Titulo">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="TituloID" ColumnName="TituloID" />
@@ -633,31 +633,31 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TFormato">
-            <EntityTypeMapping TypeName="bibliotekaNoemiModel.TFormato">
+            <EntityTypeMapping TypeName="bibliotekaNoemiModelNamespace.TFormato">
               <MappingFragment StoreEntitySet="TFormato">
-                <ScalarProperty Name="FormatoID" ColumnName="FormatoID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Formato" ColumnName="Formato" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TIdioma">
-            <EntityTypeMapping TypeName="bibliotekaNoemiModel.TIdioma">
+            <EntityTypeMapping TypeName="bibliotekaNoemiModelNamespace.TIdioma">
               <MappingFragment StoreEntitySet="TIdioma">
-                <ScalarProperty Name="IdiomaID" ColumnName="IdiomaID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Idioma" ColumnName="Idioma" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TImagen">
-            <EntityTypeMapping TypeName="bibliotekaNoemiModel.TImagen">
+            <EntityTypeMapping TypeName="bibliotekaNoemiModelNamespace.TImagen">
               <MappingFragment StoreEntitySet="TImagen">
-                <ScalarProperty Name="ImagenID" ColumnName="ImagenID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Imagen" ColumnName="Imagen" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TObjecto_Imagen">
-            <EntityTypeMapping TypeName="bibliotekaNoemiModel.TObjecto_Imagen">
+            <EntityTypeMapping TypeName="bibliotekaNoemiModelNamespace.TObjecto_Imagen">
               <MappingFragment StoreEntitySet="TObjecto_Imagen">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="TipoObjetoID" ColumnName="TipoObjetoID" />
@@ -668,15 +668,15 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TPersonaje">
-            <EntityTypeMapping TypeName="bibliotekaNoemiModel.TPersonaje">
+            <EntityTypeMapping TypeName="bibliotekaNoemiModelNamespace.TPersonaje">
               <MappingFragment StoreEntitySet="TPersonaje">
-                <ScalarProperty Name="PersonajeID" ColumnName="PersonajeID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TPersonaje_Titulo">
-            <EntityTypeMapping TypeName="bibliotekaNoemiModel.TPersonaje_Titulo">
+            <EntityTypeMapping TypeName="bibliotekaNoemiModelNamespace.TPersonaje_Titulo">
               <MappingFragment StoreEntitySet="TPersonaje_Titulo">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="TituloID" ColumnName="TituloID" />
@@ -685,25 +685,25 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TSaga">
-            <EntityTypeMapping TypeName="bibliotekaNoemiModel.TSaga">
+            <EntityTypeMapping TypeName="bibliotekaNoemiModelNamespace.TSaga">
               <MappingFragment StoreEntitySet="TSaga">
-                <ScalarProperty Name="SagaID" ColumnName="SagaID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Saga" ColumnName="Saga" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TTipoObjeto">
-            <EntityTypeMapping TypeName="bibliotekaNoemiModel.TTipoObjeto">
+            <EntityTypeMapping TypeName="bibliotekaNoemiModelNamespace.TTipoObjeto">
               <MappingFragment StoreEntitySet="TTipoObjeto">
-                <ScalarProperty Name="TipoObjetoID" ColumnName="TipoObjetoID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TTitulo">
-            <EntityTypeMapping TypeName="bibliotekaNoemiModel.TTitulo">
+            <EntityTypeMapping TypeName="bibliotekaNoemiModelNamespace.TTitulo">
               <MappingFragment StoreEntitySet="TTitulo">
-                <ScalarProperty Name="TituloID" ColumnName="TituloID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Titulo" ColumnName="Titulo" />
                 <ScalarProperty Name="AutorID" ColumnName="AutorID" />
                 <ScalarProperty Name="Volumen" ColumnName="Volumen" />
@@ -719,9 +719,9 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TUbicacion">
-            <EntityTypeMapping TypeName="bibliotekaNoemiModel.TUbicacion">
+            <EntityTypeMapping TypeName="bibliotekaNoemiModelNamespace.TUbicacion">
               <MappingFragment StoreEntitySet="TUbicacion">
-                <ScalarProperty Name="UbicacionID" ColumnName="UbicacionID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Ubicacion" ColumnName="Ubicacion" />
               </MappingFragment>
             </EntityTypeMapping>
