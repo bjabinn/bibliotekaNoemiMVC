@@ -1,0 +1,752 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="bibliotekaNoemiModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="TAutor">
+          <Key>
+            <PropertyRef Name="AutorID" />
+          </Key>
+          <Property Name="AutorID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TAutor_Titulo">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TituloID" Type="bigint" Nullable="false" />
+          <Property Name="AutorID" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TFormato">
+          <Key>
+            <PropertyRef Name="FormatoID" />
+          </Key>
+          <Property Name="FormatoID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Formato" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TIdioma">
+          <Key>
+            <PropertyRef Name="IdiomaID" />
+          </Key>
+          <Property Name="IdiomaID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Idioma" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TImagen">
+          <Key>
+            <PropertyRef Name="ImagenID" />
+          </Key>
+          <Property Name="ImagenID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Imagen" Type="image" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TObjecto_Imagen">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TipoObjetoID" Type="bigint" Nullable="false" />
+          <Property Name="ObjetoID" Type="bigint" Nullable="false" />
+          <Property Name="ImagenID" Type="bigint" Nullable="false" />
+          <Property Name="Orden" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TPersonaje">
+          <Key>
+            <PropertyRef Name="PersonajeID" />
+          </Key>
+          <Property Name="PersonajeID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="TPersonaje_Titulo">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TituloID" Type="bigint" Nullable="false" />
+          <Property Name="PersonajeID" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TSaga">
+          <Key>
+            <PropertyRef Name="SagaID" />
+          </Key>
+          <Property Name="SagaID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Saga" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TTipoObjeto">
+          <Key>
+            <PropertyRef Name="TipoObjetoID" />
+          </Key>
+          <Property Name="TipoObjetoID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Descripcion" Type="nvarchar" MaxLength="25" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TTitulo">
+          <Key>
+            <PropertyRef Name="TituloID" />
+          </Key>
+          <Property Name="TituloID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Titulo" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="AutorID" Type="bigint" Nullable="false" />
+          <Property Name="Volumen" Type="int" />
+          <Property Name="IdiomaID" Type="bigint" />
+          <Property Name="UbicacionID" Type="bigint" />
+          <Property Name="FormatoID" Type="bigint" />
+          <Property Name="SagaID" Type="bigint" />
+          <Property Name="Sinopsis" Type="nvarchar" MaxLength="1000" />
+          <Property Name="PadreID" Type="bigint" />
+          <Property Name="Personaje_TituloID" Type="bigint" />
+          <Property Name="AñoPublicacion" Type="int" />
+        </EntityType>
+        <EntityType Name="TUbicacion">
+          <Key>
+            <PropertyRef Name="UbicacionID" />
+          </Key>
+          <Property Name="UbicacionID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Ubicacion" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Autor_Titulo_Autor">
+          <End Role="TAutor" Type="Self.TAutor" Multiplicity="1" />
+          <End Role="TAutor_Titulo" Type="Self.TAutor_Titulo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TAutor">
+              <PropertyRef Name="AutorID" />
+            </Principal>
+            <Dependent Role="TAutor_Titulo">
+              <PropertyRef Name="AutorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Autor_Titulo_Titulo">
+          <End Role="TTitulo" Type="Self.TTitulo" Multiplicity="1" />
+          <End Role="TAutor_Titulo" Type="Self.TAutor_Titulo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TTitulo">
+              <PropertyRef Name="TituloID" />
+            </Principal>
+            <Dependent Role="TAutor_Titulo">
+              <PropertyRef Name="TituloID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Objecto_Imagen_Imagen">
+          <End Role="TImagen" Type="Self.TImagen" Multiplicity="1" />
+          <End Role="TObjecto_Imagen" Type="Self.TObjecto_Imagen" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TImagen">
+              <PropertyRef Name="ImagenID" />
+            </Principal>
+            <Dependent Role="TObjecto_Imagen">
+              <PropertyRef Name="ImagenID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Objecto_Imagen_TipoObjeto">
+          <End Role="TTipoObjeto" Type="Self.TTipoObjeto" Multiplicity="1" />
+          <End Role="TObjecto_Imagen" Type="Self.TObjecto_Imagen" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TTipoObjeto">
+              <PropertyRef Name="TipoObjetoID" />
+            </Principal>
+            <Dependent Role="TObjecto_Imagen">
+              <PropertyRef Name="TipoObjetoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Personaje_Titulo_Personaje">
+          <End Role="TPersonaje" Type="Self.TPersonaje" Multiplicity="1" />
+          <End Role="TPersonaje_Titulo" Type="Self.TPersonaje_Titulo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TPersonaje">
+              <PropertyRef Name="PersonajeID" />
+            </Principal>
+            <Dependent Role="TPersonaje_Titulo">
+              <PropertyRef Name="PersonajeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Personaje_Titulo_Titulo">
+          <End Role="TTitulo" Type="Self.TTitulo" Multiplicity="1" />
+          <End Role="TPersonaje_Titulo" Type="Self.TPersonaje_Titulo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TTitulo">
+              <PropertyRef Name="TituloID" />
+            </Principal>
+            <Dependent Role="TPersonaje_Titulo">
+              <PropertyRef Name="TituloID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Titulo_Formato">
+          <End Role="TFormato" Type="Self.TFormato" Multiplicity="0..1" />
+          <End Role="TTitulo" Type="Self.TTitulo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TFormato">
+              <PropertyRef Name="FormatoID" />
+            </Principal>
+            <Dependent Role="TTitulo">
+              <PropertyRef Name="FormatoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Titulo_Idioma">
+          <End Role="TIdioma" Type="Self.TIdioma" Multiplicity="0..1" />
+          <End Role="TTitulo" Type="Self.TTitulo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TIdioma">
+              <PropertyRef Name="IdiomaID" />
+            </Principal>
+            <Dependent Role="TTitulo">
+              <PropertyRef Name="IdiomaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Titulo_Saga">
+          <End Role="TSaga" Type="Self.TSaga" Multiplicity="0..1" />
+          <End Role="TTitulo" Type="Self.TTitulo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TSaga">
+              <PropertyRef Name="SagaID" />
+            </Principal>
+            <Dependent Role="TTitulo">
+              <PropertyRef Name="SagaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Titulo_Ubicacion">
+          <End Role="TUbicacion" Type="Self.TUbicacion" Multiplicity="0..1" />
+          <End Role="TTitulo" Type="Self.TTitulo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TUbicacion">
+              <PropertyRef Name="UbicacionID" />
+            </Principal>
+            <Dependent Role="TTitulo">
+              <PropertyRef Name="UbicacionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="bibliotekaNoemiModelStoreContainer">
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TAutor" EntityType="Self.TAutor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TAutor_Titulo" EntityType="Self.TAutor_Titulo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TFormato" EntityType="Self.TFormato" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TIdioma" EntityType="Self.TIdioma" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TImagen" EntityType="Self.TImagen" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TObjecto_Imagen" EntityType="Self.TObjecto_Imagen" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TPersonaje" EntityType="Self.TPersonaje" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TPersonaje_Titulo" EntityType="Self.TPersonaje_Titulo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TSaga" EntityType="Self.TSaga" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TTipoObjeto" EntityType="Self.TTipoObjeto" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TTitulo" EntityType="Self.TTitulo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TUbicacion" EntityType="Self.TUbicacion" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Autor_Titulo_Autor" Association="Self.FK_Autor_Titulo_Autor">
+            <End Role="TAutor" EntitySet="TAutor" />
+            <End Role="TAutor_Titulo" EntitySet="TAutor_Titulo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Autor_Titulo_Titulo" Association="Self.FK_Autor_Titulo_Titulo">
+            <End Role="TTitulo" EntitySet="TTitulo" />
+            <End Role="TAutor_Titulo" EntitySet="TAutor_Titulo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Objecto_Imagen_Imagen" Association="Self.FK_Objecto_Imagen_Imagen">
+            <End Role="TImagen" EntitySet="TImagen" />
+            <End Role="TObjecto_Imagen" EntitySet="TObjecto_Imagen" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Objecto_Imagen_TipoObjeto" Association="Self.FK_Objecto_Imagen_TipoObjeto">
+            <End Role="TTipoObjeto" EntitySet="TTipoObjeto" />
+            <End Role="TObjecto_Imagen" EntitySet="TObjecto_Imagen" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Personaje_Titulo_Personaje" Association="Self.FK_Personaje_Titulo_Personaje">
+            <End Role="TPersonaje" EntitySet="TPersonaje" />
+            <End Role="TPersonaje_Titulo" EntitySet="TPersonaje_Titulo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Personaje_Titulo_Titulo" Association="Self.FK_Personaje_Titulo_Titulo">
+            <End Role="TTitulo" EntitySet="TTitulo" />
+            <End Role="TPersonaje_Titulo" EntitySet="TPersonaje_Titulo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Titulo_Formato" Association="Self.FK_Titulo_Formato">
+            <End Role="TFormato" EntitySet="TFormato" />
+            <End Role="TTitulo" EntitySet="TTitulo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Titulo_Idioma" Association="Self.FK_Titulo_Idioma">
+            <End Role="TIdioma" EntitySet="TIdioma" />
+            <End Role="TTitulo" EntitySet="TTitulo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Titulo_Saga" Association="Self.FK_Titulo_Saga">
+            <End Role="TSaga" EntitySet="TSaga" />
+            <End Role="TTitulo" EntitySet="TTitulo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Titulo_Ubicacion" Association="Self.FK_Titulo_Ubicacion">
+            <End Role="TUbicacion" EntitySet="TUbicacion" />
+            <End Role="TTitulo" EntitySet="TTitulo" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="bibliotekaNoemiModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="TAutor">
+          <Key>
+            <PropertyRef Name="AutorID" />
+          </Key>
+          <Property Name="AutorID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="TAutor_Titulo" Relationship="Self.FK_Autor_Titulo_Autor" FromRole="TAutor" ToRole="TAutor_Titulo" />
+        </EntityType>
+        <EntityType Name="TAutor_Titulo">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TituloID" Type="Int64" Nullable="false" />
+          <Property Name="AutorID" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="TAutor" Relationship="Self.FK_Autor_Titulo_Autor" FromRole="TAutor_Titulo" ToRole="TAutor" />
+          <NavigationProperty Name="TTitulo" Relationship="Self.FK_Autor_Titulo_Titulo" FromRole="TAutor_Titulo" ToRole="TTitulo" />
+        </EntityType>
+        <EntityType Name="TFormato">
+          <Key>
+            <PropertyRef Name="FormatoID" />
+          </Key>
+          <Property Name="FormatoID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Formato" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="TTitulo" Relationship="Self.FK_Titulo_Formato" FromRole="TFormato" ToRole="TTitulo" />
+        </EntityType>
+        <EntityType Name="TIdioma">
+          <Key>
+            <PropertyRef Name="IdiomaID" />
+          </Key>
+          <Property Name="IdiomaID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Idioma" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="TTitulo" Relationship="Self.FK_Titulo_Idioma" FromRole="TIdioma" ToRole="TTitulo" />
+        </EntityType>
+        <EntityType Name="TImagen">
+          <Key>
+            <PropertyRef Name="ImagenID" />
+          </Key>
+          <Property Name="ImagenID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Imagen" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <NavigationProperty Name="TObjecto_Imagen" Relationship="Self.FK_Objecto_Imagen_Imagen" FromRole="TImagen" ToRole="TObjecto_Imagen" />
+        </EntityType>
+        <EntityType Name="TObjecto_Imagen">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TipoObjetoID" Type="Int64" Nullable="false" />
+          <Property Name="ObjetoID" Type="Int64" Nullable="false" />
+          <Property Name="ImagenID" Type="Int64" Nullable="false" />
+          <Property Name="Orden" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="TImagen" Relationship="Self.FK_Objecto_Imagen_Imagen" FromRole="TObjecto_Imagen" ToRole="TImagen" />
+          <NavigationProperty Name="TTipoObjeto" Relationship="Self.FK_Objecto_Imagen_TipoObjeto" FromRole="TObjecto_Imagen" ToRole="TTipoObjeto" />
+        </EntityType>
+        <EntityType Name="TPersonaje">
+          <Key>
+            <PropertyRef Name="PersonajeID" />
+          </Key>
+          <Property Name="PersonajeID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="TPersonaje_Titulo" Relationship="Self.FK_Personaje_Titulo_Personaje" FromRole="TPersonaje" ToRole="TPersonaje_Titulo" />
+        </EntityType>
+        <EntityType Name="TPersonaje_Titulo">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TituloID" Type="Int64" Nullable="false" />
+          <Property Name="PersonajeID" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="TPersonaje" Relationship="Self.FK_Personaje_Titulo_Personaje" FromRole="TPersonaje_Titulo" ToRole="TPersonaje" />
+          <NavigationProperty Name="TTitulo" Relationship="Self.FK_Personaje_Titulo_Titulo" FromRole="TPersonaje_Titulo" ToRole="TTitulo" />
+        </EntityType>
+        <EntityType Name="TSaga">
+          <Key>
+            <PropertyRef Name="SagaID" />
+          </Key>
+          <Property Name="SagaID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Saga" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="TTitulo" Relationship="Self.FK_Titulo_Saga" FromRole="TSaga" ToRole="TTitulo" />
+        </EntityType>
+        <EntityType Name="TTipoObjeto">
+          <Key>
+            <PropertyRef Name="TipoObjetoID" />
+          </Key>
+          <Property Name="TipoObjetoID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Descripcion" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="TObjecto_Imagen" Relationship="Self.FK_Objecto_Imagen_TipoObjeto" FromRole="TTipoObjeto" ToRole="TObjecto_Imagen" />
+        </EntityType>
+        <EntityType Name="TTitulo">
+          <Key>
+            <PropertyRef Name="TituloID" />
+          </Key>
+          <Property Name="TituloID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Titulo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AutorID" Type="Int64" Nullable="false" />
+          <Property Name="Volumen" Type="Int32" />
+          <Property Name="IdiomaID" Type="Int64" />
+          <Property Name="UbicacionID" Type="Int64" />
+          <Property Name="FormatoID" Type="Int64" />
+          <Property Name="SagaID" Type="Int64" />
+          <Property Name="Sinopsis" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="PadreID" Type="Int64" />
+          <Property Name="Personaje_TituloID" Type="Int64" />
+          <Property Name="AñoPublicacion" Type="Int32" />
+          <NavigationProperty Name="TAutor_Titulo" Relationship="Self.FK_Autor_Titulo_Titulo" FromRole="TTitulo" ToRole="TAutor_Titulo" />
+          <NavigationProperty Name="TFormato" Relationship="Self.FK_Titulo_Formato" FromRole="TTitulo" ToRole="TFormato" />
+          <NavigationProperty Name="TIdioma" Relationship="Self.FK_Titulo_Idioma" FromRole="TTitulo" ToRole="TIdioma" />
+          <NavigationProperty Name="TPersonaje_Titulo" Relationship="Self.FK_Personaje_Titulo_Titulo" FromRole="TTitulo" ToRole="TPersonaje_Titulo" />
+          <NavigationProperty Name="TSaga" Relationship="Self.FK_Titulo_Saga" FromRole="TTitulo" ToRole="TSaga" />
+          <NavigationProperty Name="TUbicacion" Relationship="Self.FK_Titulo_Ubicacion" FromRole="TTitulo" ToRole="TUbicacion" />
+        </EntityType>
+        <EntityType Name="TUbicacion">
+          <Key>
+            <PropertyRef Name="UbicacionID" />
+          </Key>
+          <Property Name="UbicacionID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Ubicacion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="TTitulo" Relationship="Self.FK_Titulo_Ubicacion" FromRole="TUbicacion" ToRole="TTitulo" />
+        </EntityType>
+        <Association Name="FK_Autor_Titulo_Autor">
+          <End Role="TAutor" Type="Self.TAutor" Multiplicity="1" />
+          <End Role="TAutor_Titulo" Type="Self.TAutor_Titulo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TAutor">
+              <PropertyRef Name="AutorID" />
+            </Principal>
+            <Dependent Role="TAutor_Titulo">
+              <PropertyRef Name="AutorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Autor_Titulo_Titulo">
+          <End Role="TTitulo" Type="Self.TTitulo" Multiplicity="1" />
+          <End Role="TAutor_Titulo" Type="Self.TAutor_Titulo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TTitulo">
+              <PropertyRef Name="TituloID" />
+            </Principal>
+            <Dependent Role="TAutor_Titulo">
+              <PropertyRef Name="TituloID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Titulo_Formato">
+          <End Role="TFormato" Type="Self.TFormato" Multiplicity="0..1" />
+          <End Role="TTitulo" Type="Self.TTitulo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TFormato">
+              <PropertyRef Name="FormatoID" />
+            </Principal>
+            <Dependent Role="TTitulo">
+              <PropertyRef Name="FormatoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Titulo_Idioma">
+          <End Role="TIdioma" Type="Self.TIdioma" Multiplicity="0..1" />
+          <End Role="TTitulo" Type="Self.TTitulo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TIdioma">
+              <PropertyRef Name="IdiomaID" />
+            </Principal>
+            <Dependent Role="TTitulo">
+              <PropertyRef Name="IdiomaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Objecto_Imagen_Imagen">
+          <End Role="TImagen" Type="Self.TImagen" Multiplicity="1" />
+          <End Role="TObjecto_Imagen" Type="Self.TObjecto_Imagen" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TImagen">
+              <PropertyRef Name="ImagenID" />
+            </Principal>
+            <Dependent Role="TObjecto_Imagen">
+              <PropertyRef Name="ImagenID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Objecto_Imagen_TipoObjeto">
+          <End Role="TTipoObjeto" Type="Self.TTipoObjeto" Multiplicity="1" />
+          <End Role="TObjecto_Imagen" Type="Self.TObjecto_Imagen" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TTipoObjeto">
+              <PropertyRef Name="TipoObjetoID" />
+            </Principal>
+            <Dependent Role="TObjecto_Imagen">
+              <PropertyRef Name="TipoObjetoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Personaje_Titulo_Personaje">
+          <End Role="TPersonaje" Type="Self.TPersonaje" Multiplicity="1" />
+          <End Role="TPersonaje_Titulo" Type="Self.TPersonaje_Titulo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TPersonaje">
+              <PropertyRef Name="PersonajeID" />
+            </Principal>
+            <Dependent Role="TPersonaje_Titulo">
+              <PropertyRef Name="PersonajeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Personaje_Titulo_Titulo">
+          <End Role="TTitulo" Type="Self.TTitulo" Multiplicity="1" />
+          <End Role="TPersonaje_Titulo" Type="Self.TPersonaje_Titulo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TTitulo">
+              <PropertyRef Name="TituloID" />
+            </Principal>
+            <Dependent Role="TPersonaje_Titulo">
+              <PropertyRef Name="TituloID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Titulo_Saga">
+          <End Role="TSaga" Type="Self.TSaga" Multiplicity="0..1" />
+          <End Role="TTitulo" Type="Self.TTitulo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TSaga">
+              <PropertyRef Name="SagaID" />
+            </Principal>
+            <Dependent Role="TTitulo">
+              <PropertyRef Name="SagaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Titulo_Ubicacion">
+          <End Role="TUbicacion" Type="Self.TUbicacion" Multiplicity="0..1" />
+          <End Role="TTitulo" Type="Self.TTitulo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TUbicacion">
+              <PropertyRef Name="UbicacionID" />
+            </Principal>
+            <Dependent Role="TTitulo">
+              <PropertyRef Name="UbicacionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="bibliotekaNoemiEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="TAutor" EntityType="Self.TAutor" />
+          <EntitySet Name="TAutor_Titulo" EntityType="Self.TAutor_Titulo" />
+          <EntitySet Name="TFormato" EntityType="Self.TFormato" />
+          <EntitySet Name="TIdioma" EntityType="Self.TIdioma" />
+          <EntitySet Name="TImagen" EntityType="Self.TImagen" />
+          <EntitySet Name="TObjecto_Imagen" EntityType="Self.TObjecto_Imagen" />
+          <EntitySet Name="TPersonaje" EntityType="Self.TPersonaje" />
+          <EntitySet Name="TPersonaje_Titulo" EntityType="Self.TPersonaje_Titulo" />
+          <EntitySet Name="TSaga" EntityType="Self.TSaga" />
+          <EntitySet Name="TTipoObjeto" EntityType="Self.TTipoObjeto" />
+          <EntitySet Name="TTitulo" EntityType="Self.TTitulo" />
+          <EntitySet Name="TUbicacion" EntityType="Self.TUbicacion" />
+          <AssociationSet Name="FK_Autor_Titulo_Autor" Association="Self.FK_Autor_Titulo_Autor">
+            <End Role="TAutor" EntitySet="TAutor" />
+            <End Role="TAutor_Titulo" EntitySet="TAutor_Titulo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Autor_Titulo_Titulo" Association="Self.FK_Autor_Titulo_Titulo">
+            <End Role="TTitulo" EntitySet="TTitulo" />
+            <End Role="TAutor_Titulo" EntitySet="TAutor_Titulo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Titulo_Formato" Association="Self.FK_Titulo_Formato">
+            <End Role="TFormato" EntitySet="TFormato" />
+            <End Role="TTitulo" EntitySet="TTitulo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Titulo_Idioma" Association="Self.FK_Titulo_Idioma">
+            <End Role="TIdioma" EntitySet="TIdioma" />
+            <End Role="TTitulo" EntitySet="TTitulo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Objecto_Imagen_Imagen" Association="Self.FK_Objecto_Imagen_Imagen">
+            <End Role="TImagen" EntitySet="TImagen" />
+            <End Role="TObjecto_Imagen" EntitySet="TObjecto_Imagen" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Objecto_Imagen_TipoObjeto" Association="Self.FK_Objecto_Imagen_TipoObjeto">
+            <End Role="TTipoObjeto" EntitySet="TTipoObjeto" />
+            <End Role="TObjecto_Imagen" EntitySet="TObjecto_Imagen" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Personaje_Titulo_Personaje" Association="Self.FK_Personaje_Titulo_Personaje">
+            <End Role="TPersonaje" EntitySet="TPersonaje" />
+            <End Role="TPersonaje_Titulo" EntitySet="TPersonaje_Titulo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Personaje_Titulo_Titulo" Association="Self.FK_Personaje_Titulo_Titulo">
+            <End Role="TTitulo" EntitySet="TTitulo" />
+            <End Role="TPersonaje_Titulo" EntitySet="TPersonaje_Titulo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Titulo_Saga" Association="Self.FK_Titulo_Saga">
+            <End Role="TSaga" EntitySet="TSaga" />
+            <End Role="TTitulo" EntitySet="TTitulo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Titulo_Ubicacion" Association="Self.FK_Titulo_Ubicacion">
+            <End Role="TUbicacion" EntitySet="TUbicacion" />
+            <End Role="TTitulo" EntitySet="TTitulo" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="bibliotekaNoemiModelStoreContainer" CdmEntityContainer="bibliotekaNoemiEntities">
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="bibliotekaNoemiModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TAutor">
+            <EntityTypeMapping TypeName="bibliotekaNoemiModel.TAutor">
+              <MappingFragment StoreEntitySet="TAutor">
+                <ScalarProperty Name="AutorID" ColumnName="AutorID" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TAutor_Titulo">
+            <EntityTypeMapping TypeName="bibliotekaNoemiModel.TAutor_Titulo">
+              <MappingFragment StoreEntitySet="TAutor_Titulo">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="TituloID" ColumnName="TituloID" />
+                <ScalarProperty Name="AutorID" ColumnName="AutorID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TFormato">
+            <EntityTypeMapping TypeName="bibliotekaNoemiModel.TFormato">
+              <MappingFragment StoreEntitySet="TFormato">
+                <ScalarProperty Name="FormatoID" ColumnName="FormatoID" />
+                <ScalarProperty Name="Formato" ColumnName="Formato" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TIdioma">
+            <EntityTypeMapping TypeName="bibliotekaNoemiModel.TIdioma">
+              <MappingFragment StoreEntitySet="TIdioma">
+                <ScalarProperty Name="IdiomaID" ColumnName="IdiomaID" />
+                <ScalarProperty Name="Idioma" ColumnName="Idioma" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TImagen">
+            <EntityTypeMapping TypeName="bibliotekaNoemiModel.TImagen">
+              <MappingFragment StoreEntitySet="TImagen">
+                <ScalarProperty Name="ImagenID" ColumnName="ImagenID" />
+                <ScalarProperty Name="Imagen" ColumnName="Imagen" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TObjecto_Imagen">
+            <EntityTypeMapping TypeName="bibliotekaNoemiModel.TObjecto_Imagen">
+              <MappingFragment StoreEntitySet="TObjecto_Imagen">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="TipoObjetoID" ColumnName="TipoObjetoID" />
+                <ScalarProperty Name="ObjetoID" ColumnName="ObjetoID" />
+                <ScalarProperty Name="ImagenID" ColumnName="ImagenID" />
+                <ScalarProperty Name="Orden" ColumnName="Orden" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TPersonaje">
+            <EntityTypeMapping TypeName="bibliotekaNoemiModel.TPersonaje">
+              <MappingFragment StoreEntitySet="TPersonaje">
+                <ScalarProperty Name="PersonajeID" ColumnName="PersonajeID" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TPersonaje_Titulo">
+            <EntityTypeMapping TypeName="bibliotekaNoemiModel.TPersonaje_Titulo">
+              <MappingFragment StoreEntitySet="TPersonaje_Titulo">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="TituloID" ColumnName="TituloID" />
+                <ScalarProperty Name="PersonajeID" ColumnName="PersonajeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TSaga">
+            <EntityTypeMapping TypeName="bibliotekaNoemiModel.TSaga">
+              <MappingFragment StoreEntitySet="TSaga">
+                <ScalarProperty Name="SagaID" ColumnName="SagaID" />
+                <ScalarProperty Name="Saga" ColumnName="Saga" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TTipoObjeto">
+            <EntityTypeMapping TypeName="bibliotekaNoemiModel.TTipoObjeto">
+              <MappingFragment StoreEntitySet="TTipoObjeto">
+                <ScalarProperty Name="TipoObjetoID" ColumnName="TipoObjetoID" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TTitulo">
+            <EntityTypeMapping TypeName="bibliotekaNoemiModel.TTitulo">
+              <MappingFragment StoreEntitySet="TTitulo">
+                <ScalarProperty Name="TituloID" ColumnName="TituloID" />
+                <ScalarProperty Name="Titulo" ColumnName="Titulo" />
+                <ScalarProperty Name="AutorID" ColumnName="AutorID" />
+                <ScalarProperty Name="Volumen" ColumnName="Volumen" />
+                <ScalarProperty Name="IdiomaID" ColumnName="IdiomaID" />
+                <ScalarProperty Name="UbicacionID" ColumnName="UbicacionID" />
+                <ScalarProperty Name="FormatoID" ColumnName="FormatoID" />
+                <ScalarProperty Name="SagaID" ColumnName="SagaID" />
+                <ScalarProperty Name="Sinopsis" ColumnName="Sinopsis" />
+                <ScalarProperty Name="PadreID" ColumnName="PadreID" />
+                <ScalarProperty Name="Personaje_TituloID" ColumnName="Personaje_TituloID" />
+                <ScalarProperty Name="AñoPublicacion" ColumnName="AñoPublicacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TUbicacion">
+            <EntityTypeMapping TypeName="bibliotekaNoemiModel.TUbicacion">
+              <MappingFragment StoreEntitySet="TUbicacion">
+                <ScalarProperty Name="UbicacionID" ColumnName="UbicacionID" />
+                <ScalarProperty Name="Ubicacion" ColumnName="Ubicacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

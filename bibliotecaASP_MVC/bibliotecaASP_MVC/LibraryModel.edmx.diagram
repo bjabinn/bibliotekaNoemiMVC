@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="436afbd47aa64d598cafbc46917a7ff6" Name="Diagram1">
+        <EntityTypeShape EntityType="bibliotekaNoemiModel.sysdiagrams" Width="1.5" PointX="7.75" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="bibliotekaNoemiModel.TAutor" Width="1.5" PointX="3" PointY="12" IsExpanded="true" />
+        <EntityTypeShape EntityType="bibliotekaNoemiModel.TAutor_Titulo" Width="1.5" PointX="5.25" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="bibliotekaNoemiModel.TFormato" Width="1.5" PointX="0.75" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="bibliotekaNoemiModel.TIdioma" Width="1.5" PointX="0.75" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="bibliotekaNoemiModel.TImagen" Width="1.5" PointX="5.75" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="bibliotekaNoemiModel.TObjecto_Imagen" Width="1.5" PointX="8" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="bibliotekaNoemiModel.TPersonaje" Width="1.5" PointX="3" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="bibliotekaNoemiModel.TPersonaje_Titulo" Width="1.5" PointX="5.25" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="bibliotekaNoemiModel.TSaga" Width="1.5" PointX="0.75" PointY="9.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="bibliotekaNoemiModel.TTipoObjeto" Width="1.5" PointX="5.75" PointY="10.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="bibliotekaNoemiModel.TTitulo" Width="1.5" PointX="3" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="bibliotekaNoemiModel.TUbicacion" Width="1.5" PointX="0.75" PointY="11.75" IsExpanded="true" />
+        <AssociationConnector Association="bibliotekaNoemiModel.FK_Autor_Titulo_Autor" ManuallyRouted="false" />
+        <AssociationConnector Association="bibliotekaNoemiModel.FK_Autor_Titulo_Titulo" ManuallyRouted="false" />
+        <AssociationConnector Association="bibliotekaNoemiModel.FK_Titulo_Formato" ManuallyRouted="false" />
+        <AssociationConnector Association="bibliotekaNoemiModel.FK_Titulo_Idioma" ManuallyRouted="false" />
+        <AssociationConnector Association="bibliotekaNoemiModel.FK_Objecto_Imagen_Imagen" ManuallyRouted="false" />
+        <AssociationConnector Association="bibliotekaNoemiModel.FK_Objecto_Imagen_TipoObjeto" ManuallyRouted="false" />
+        <AssociationConnector Association="bibliotekaNoemiModel.FK_Personaje_Titulo_Personaje" ManuallyRouted="false" />
+        <AssociationConnector Association="bibliotekaNoemiModel.FK_Personaje_Titulo_Titulo" ManuallyRouted="false" />
+        <AssociationConnector Association="bibliotekaNoemiModel.FK_Titulo_Saga" ManuallyRouted="false" />
+        <AssociationConnector Association="bibliotekaNoemiModel.FK_Titulo_Ubicacion" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
